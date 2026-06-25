@@ -109,50 +109,116 @@ h1{
 </div>
 
 <script>
+let win = 0;
+let lose = 0;
+let draw = 0;
 
 function play(player){
 
-    const hands = [
-        "グー",
-        "チョキ",
-        "パー"
-    ];
+```
+// すでに3回勝負が終わっている場合
+if(win >= 2 || lose >= 2){
+    return;
+}
 
-    const computer =
-    hands[Math.floor(Math.random()*3)];
+const hands = [
+    "グー",
+    "チョキ",
+    "パー"
+];
 
-    let result="";
+const computer =
+hands[Math.floor(Math.random()*3)];
 
-    if(player===computer){
+let result="";
 
-        result="あいこ";
-    }
+if(player===computer){
 
-    else if(
+    result="あいこ";
+    draw++;
 
-        (player==="グー" && computer==="チョキ") ||
+}
 
-        (player==="チョキ" && computer==="パー") ||
+else if(
 
-        (player==="パー" && computer==="グー")
+    (player==="グー" && computer==="チョキ") ||
+    (player==="チョキ" && computer==="パー") ||
+    (player==="パー" && computer==="グー")
 
-    ){
+){
 
-        result="あなたの勝ち！";
-    }
+    result="あなたの勝ち！";
+    win++;
 
-    else{
+}
 
-        result="あなたの負け...";
-    }
+else{
 
-    document.getElementById("result")
-    .innerHTML=`
+    result="あなたの負け...";
+    lose++;
 
-    相手：${computer}<br>
-    ${result}
+}
 
+let finalResult = "";
+
+if(win >= 2){
+
+    finalResult = `
+    <br><br>
+    🎉 あなたの勝利です！ 🎉
+    <br>
+    3秒後にリセットします
     `;
+
+    setTimeout(resetGame,3000);
+
+}
+
+if(lose >= 2){
+
+    finalResult = `
+    <br><br>
+    😢 うーちゃんの勝利！
+    <br>
+    3秒後にリセットします
+    `;
+
+    setTimeout(resetGame,3000);
+
+}
+
+document.getElementById("result")
+.innerHTML=`
+
+うーちゃん：${computer}<br>
+${result}
+
+<hr>
+
+勝ち：${win}<br>
+負け：${lose}<br>
+あいこ：${draw}
+
+${finalResult}
+
+`;
+```
+
+}
+
+function resetGame(){
+
+```
+win = 0;
+lose = 0;
+draw = 0;
+
+document.getElementById("result")
+.innerHTML = `
+新しい勝負を開始！
+`;
+```
+
 }
 
 </script>
