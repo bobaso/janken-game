@@ -113,9 +113,9 @@ let win = 0;
 let lose = 0;
 let draw = 0;
 
+```javascript
 function play(player){
 
-```
 // すでに3回勝負が終わっている場合
 if(win >= 2 || lose >= 2){
     return;
@@ -208,10 +208,11 @@ ${finalResult}
 
 function resetGame(){
 
-```
 win = 0;
 lose = 0;
 draw = 0;
+
+}
 
 document.getElementById("result")
 .innerHTML = `
