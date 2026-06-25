@@ -109,120 +109,117 @@ h1{
 </div>
 
 <script>
+<script>
+
 let win = 0;
 let lose = 0;
 let draw = 0;
 
-```javascript
 function play(player){
 
-// すでに3回勝負が終わっている場合
-if(win >= 2 || lose >= 2){
-    return;
-}
+    if(win >= 2 || lose >= 2){
+        return;
+    }
 
-const hands = [
-    "グー",
-    "チョキ",
-    "パー"
-];
+    const hands = [
+        "グー",
+        "チョキ",
+        "パー"
+    ];
 
-const computer =
-hands[Math.floor(Math.random()*3)];
+    const computer =
+    hands[Math.floor(Math.random()*3)];
 
-let result="";
+    let result="";
 
-if(player===computer){
+    if(player===computer){
 
-    result="あいこ";
-    draw++;
+        result="あいこ";
+        draw++;
 
-}
+    }
 
-else if(
+    else if(
 
-    (player==="グー" && computer==="チョキ") ||
-    (player==="チョキ" && computer==="パー") ||
-    (player==="パー" && computer==="グー")
+        (player==="グー" && computer==="チョキ") ||
+        (player==="チョキ" && computer==="パー") ||
+        (player==="パー" && computer==="グー")
 
-){
+    ){
 
-    result="あなたの勝ち！";
-    win++;
+        result="あなたの勝ち！";
+        win++;
 
-}
+    }
 
-else{
+    else{
 
-    result="あなたの負け...";
-    lose++;
+        result="あなたの負け...";
+        lose++;
 
-}
+    }
 
-let finalResult = "";
+    let finalResult = "";
 
-if(win >= 2){
+    if(win >= 2){
 
-    finalResult = `
-    <br><br>
-    🎉 あなたの勝利です！ 🎉
-    <br>
-    3秒後にリセットします
+        finalResult = `
+        <br><br>
+        🎉 あなたの勝利です！ 🎉
+        <br>
+        3秒後にリセットします
+        `;
+
+        setTimeout(resetGame,3000);
+
+    }
+
+    if(lose >= 2){
+
+        finalResult = `
+        <br><br>
+        😢 うーちゃんの勝利！
+        <br>
+        3秒後にリセットします
+        `;
+
+        setTimeout(resetGame,3000);
+
+    }
+
+    document.getElementById("result")
+    .innerHTML=`
+
+    うーちゃん：${computer}<br>
+    ${result}
+
+    <hr>
+
+    勝ち：${win}<br>
+    負け：${lose}<br>
+    あいこ：${draw}
+
+    ${finalResult}
+
     `;
-
-    setTimeout(resetGame,3000);
-
-}
-
-if(lose >= 2){
-
-    finalResult = `
-    <br><br>
-    😢 うーちゃんの勝利！
-    <br>
-    3秒後にリセットします
-    `;
-
-    setTimeout(resetGame,3000);
-
-}
-
-document.getElementById("result")
-.innerHTML=`
-
-うーちゃん：${computer}<br>
-${result}
-
-<hr>
-
-勝ち：${win}<br>
-負け：${lose}<br>
-あいこ：${draw}
-
-${finalResult}
-
-`;
-```
-
 }
 
 function resetGame(){
 
-win = 0;
-lose = 0;
-draw = 0;
+    win = 0;
+    lose = 0;
+    draw = 0;
 
-}
-
-document.getElementById("result")
-.innerHTML = `
-新しい勝負を開始！
-`;
-```
-
+    document.getElementById("result")
+    .innerHTML = `
+    新しい勝負を開始！
+    `;
 }
 
 </script>
+
+```
+```
 
 </body>
 </html>
