@@ -138,6 +138,21 @@ function play(player){
     ];
 
     const computer =
+        let handImage = "";
+
+if(computer === "グー"){
+    handImage = "enemy_gu.png";
+}
+
+if(computer === "チョキ"){
+    handImage = "enemy_choki.png";
+}
+
+if(computer === "パー"){
+    handImage = "enemy_pa.png";
+}
+
+document.getElementById("enemyHand").src = handImage;
     hands[Math.floor(Math.random()*3)];
 
     let result="";
